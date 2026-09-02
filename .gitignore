@@ -1,0 +1,13 @@
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.py[cod]
+
+# Disposable localhost TLS material.
+framework/XSSApp-1.1.0/XSSApp/server.crt
+framework/XSSApp-1.1.0/XSSApp/server.key

@@ -1,5 +1,3 @@
 recursive-include XSSApp/static *.ico
 recursive-include XSSApp/templates *.html
 include requirements.txt
-include XSSApp/server.key
-include XSSApp/server.crt

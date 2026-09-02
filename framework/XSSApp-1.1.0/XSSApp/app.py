@@ -265,7 +265,17 @@ def start_app():
     app.secret_key = secret_key
     app.config["SESSION_COOKIE_HTTPONLY"] = False
     path = os.path.dirname(os.path.realpath(__file__))
-    app.run(host="0.0.0.0", ssl_context=(f"{path}/server.crt", f"{path}/server.key"))
+    certificate = os.environ.get("XSSAPP_CERTIFICATE", f"{path}/server.crt")
+    private_key = os.environ.get("XSSAPP_PRIVATE_KEY", f"{path}/server.key")
+    if not os.path.isfile(certificate) or not os.path.isfile(private_key):
+        raise FileNotFoundError(
+            "TLS files are missing; run scripts/generate-local-certificates.sh first"
+        )
+    app.run(
+        host=os.environ.get("XSSAPP_HOST", "127.0.0.1"),
+        port=int(os.environ.get("XSSAPP_PORT", "5000")),
+        ssl_context=(certificate, private_key),
+    )
 
 
 if __name__ == "__main__":

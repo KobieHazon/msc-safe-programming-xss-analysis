@@ -40,7 +40,7 @@ def has_on_attribute(attribute_name: str):
 
 def validate_message(message: str):
     parsed = BeautifulSoup(message, 'html.parser')
-    if parsed.findChildren("script"):
+    if parsed.find_all("script"):
         raise ValueError("message contains scripts!")
     all_attributes = get_all_attributes(parsed)
     if any(has_on_attribute(elem) for elem in all_attributes):
