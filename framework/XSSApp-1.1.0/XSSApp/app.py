@@ -264,7 +264,8 @@ def start_app():
     app.logger.info("App secret key: %s", base64.b64encode(secret_key))
     app.secret_key = secret_key
     app.config["SESSION_COOKIE_HTTPONLY"] = False
-    app.run()
+    path = os.path.dirname(os.path.realpath(__file__))
+    app.run(host="0.0.0.0", ssl_context=(f"{path}/server.crt", f"{path}/server.key"))
 
 
 if __name__ == "__main__":
