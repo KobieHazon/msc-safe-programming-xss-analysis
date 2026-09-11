@@ -1,6 +1,6 @@
 # Cross-Site Scripting Analysis
 
-This repository preserves a 2023 Safe Programming coursework exercise about cross-site scripting (XSS), browser/server parser differences, Flask session cookies, CSRF state, and HTTPS configuration. It includes the supplied deliberately vulnerable Flask application, my analysis and helper script, my report, and the third-party Flask-Unsign source found with the project.
+This repository preserves a 2023 Safe Programming coursework exercise about cross-site scripting (XSS), browser/server parser differences, Flask session cookies, CSRF state, and HTTPS configuration. It includes the supplied deliberately vulnerable Flask application, my analysis and helper script, and my report.
 
 > [!CAUTION]
 > The application is intentionally vulnerable and prints its temporary session secret. Run it only on a trusted local machine. The maintained launcher binds to `127.0.0.1` by default.
@@ -11,19 +11,15 @@ This repository preserves a 2023 Safe Programming coursework exercise about cros
 - HTML, JavaScript, XSS, CSRF, HMAC-signed session cookies, and parser differentials
 - OpenSSL and local TLS certificates
 
-## Authorship and provenance
+## Included materials
 
-| Path | Classification | Author or source |
-| --- | --- | --- |
-| `assignment/` | Course-supplied | Safe Programming exercise brief |
-| `framework/XSSApp-1.1.0/` | Course-supplied framework | Deliberately vulnerable 2023 Flask application |
-| Framework HTTPS changes in the second commit | Authored solution work | Me |
-| `solution/` | Authored solution work | Me |
-| `results/report.pdf` | Authored submission | Me |
-| `third_party/Flask-Unsign/` | Third-party reference tool | Luke Paris (Paradoxis), Flask-Unsign 1.2.0, MIT License |
-| Tests, scripts, and repository documentation | Tests and tooling | Me |
+- `assignment/`: supplied Safe Programming exercise brief.
+- `framework/XSSApp-1.1.0/`: supplied deliberately vulnerable Flask application, with my HTTPS changes.
+- `solution/`: my session-cookie helper.
+- `results/report.pdf`: my report.
+- `tests/` and `scripts/`: local validation and setup helpers.
 
-The course framework remains included because it is the subject of the analysis. The repository does not claim that framework or Flask-Unsign as my work. Historical certificates, private keys, certificate requests, and configuration containing personal details were deliberately excluded.
+The supplied application is the subject of the analysis. Historical certificates, private keys, certificate requests, and configuration containing personal details were deliberately excluded.
 
 ## Implementation notes
 
@@ -64,7 +60,7 @@ The recovered helper was updated to use Flask's supported serializer instead of 
 uv run python -m solution.flask_cookie_generator SESSION_COOKIE LOGGED_SECRET
 ```
 
-Use it only with this repository's local exercise instance. Flask-Unsign is retained under `third_party/` for historical context; it is not required by the maintained helper or application.
+Use it only with this repository's local exercise instance. The helper uses Flask's own serializer and does not require a separate cookie-analysis tool.
 
 ## Verify
 
@@ -78,4 +74,4 @@ The tests exercise the local Flask test client, CSRF flow, intentionally accepte
 
 ## License
 
-No blanket license is asserted over the course framework or report. Flask-Unsign retains its MIT license in `third_party/Flask-Unsign/LICENSE.md`; the root provenance table distinguishes it from the authored work.
+No blanket license is asserted over the supplied course framework or report.

@@ -41,7 +41,7 @@ addopts = "-ra"
 testpaths = ["tests"]
 
 [tool.ruff]
-exclude = ["framework", "third_party"]
+exclude = ["framework"]
 line-length = 100
 target-version = "py310"
 
