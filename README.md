@@ -21,10 +21,6 @@ This repository preserves a 2023 Safe Programming coursework exercise about cros
 
 The supplied application is the subject of the analysis. Historical certificates, private keys, certificate requests, and configuration containing personal details were deliberately excluded.
 
-## Implementation notes
-
-The pristine framework was reconstructed from the recovered 2023 package by reverting only the HTTPS-specific `app.run` and package-manifest changes described in the report. Other differences from the earlier 2022 framework are course version changes and remain in the first commit.
-
 ## Analysis scope
 
 The report documents:
@@ -54,7 +50,7 @@ The launcher uses `127.0.0.1` unless `XSSAPP_HOST` is explicitly set. Do not exp
 
 ## Session helper
 
-The recovered helper was updated to use Flask's supported serializer instead of an internal `itsdangerous` API. It accepts a cookie from this local app and the base64 secret printed by the same local process:
+The helper was updated to use Flask's supported serializer instead of an internal `itsdangerous` API. It accepts a cookie from this local app and the base64 secret printed by the same local process:
 
 ```bash
 uv run python -m solution.flask_cookie_generator SESSION_COOKIE LOGGED_SECRET
@@ -71,7 +67,3 @@ uv run ruff format --check solution tests
 ```
 
 The tests exercise the local Flask test client, CSRF flow, intentionally accepted iframe input, rejected event attributes, and session-cookie re-signing. No CI workflow is included because this is a small historical coursework repository with a narrow local validation path.
-
-## License
-
-No blanket license is asserted over the supplied course framework or report.

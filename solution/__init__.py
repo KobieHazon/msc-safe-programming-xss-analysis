@@ -1,1 +1,1 @@
-"""Authored helpers recovered from the coursework submission."""
+"""Authored helpers from the coursework submission."""
